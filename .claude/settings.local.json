@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venvScriptspython.exe -m pip install pymupdf==1.23.8 pillow==10.1.0 aiofiles==23.2.1)",
+      "Bash(.venv/Scripts/python.exe -m pip install:*)",
+      "Bash(.venv/Scripts/python.exe -c \"from app.main import app; print\\(''✅ App imports successfully''\\)\")",
+      "Bash(git add:*)"
+    ]
+  }
+}
