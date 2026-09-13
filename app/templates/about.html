@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}About Talk To Your Data{% endblock %}
+{% block description %}How Talk To Your Data answers questions: passages, two indexes, rank fusion, and a model that must cite.{% endblock %}
+{% block body_class %}page--about{% endblock %}
+{% block nav_link %}<a class="site-nav__link" href="/">Ask a question</a>{% endblock %}
+{% block main %}
+  <article class="about">
+    <h1 class="about__title">How it works</h1>
+    <p class="about__lede">Every answer on this site comes with the passages it was built from and the search evidence that found them. Here is the whole path from a document to a cited answer.</p>
+
+    <ol class="steps">
+      <li class="step">
+        <h2 class="step__h">Documents are cut into passages</h2>
+        <p>Each document is split into passages of about 300 words that overlap by 50, so a sentence near a boundary is never lost. Three public-domain documents are preloaded; a file you upload is cut the same way, kept only in memory for your session, and deleted after an hour.</p>
+      </li>
+      <li class="step">
+        <h2 class="step__h">Every passage is indexed twice</h2>
+        <p>Once as words, in an SQLite FTS5 index ranked by BM25, and once as a 384-number embedding from <code>{{ about.embed_model }}</code>, stored with sqlite-vec. Both live in one database file; no external service is involved.</p>
+      </li>
+      <li class="step">
+        <h2 class="step__h">Your question runs against both</h2>
+        <p>Keyword search and vector search each return twenty candidates. The two ranked lists are fused by reciprocal rank (each passage scores the sum of 1&thinsp;/&thinsp;(60&nbsp;+&nbsp;rank) across the lists) and the top five passages go on. The mode switch lets you use either list on its own.</p>
+      </li>
+      <li class="step">
+        <h2 class="step__h">The answer is written from those passages only</h2>
+        {% if about.generation_mode == 'groq' and about.model %}
+        <p>{{ about.model }}, running on Groq, is shown the five numbered passages and told to answer from them alone, citing as [n], and to say "The documents do not say" when they do not. If the model cannot be reached, the site falls back to showing the best-supported passage instead.</p>
+        {% else %}
+        <p>This deployment has no generation key, so the site shows the best-supported passage as the answer, with the words from your question highlighted. With a Groq key set, a Llama model writes the answer from the five passages and cites them as [n].</p>
+        {% endif %}
+      </li>
+    </ol>
+
+    <section class="about__section" aria-labelledby="eval-h">
+      <h2 id="eval-h" class="about__h">Does hybrid search help?</h2>
+      {% if about.eval and about.eval.modes %}
+      <p>Measured over {{ about.eval.n_questions }} questions with a known answer passage in the preloaded documents. Hit@5 is the share of questions whose passage lands in the top five; MRR is the mean of 1&thinsp;/&thinsp;rank of that passage, so 1.00 would mean it always came first.</p>
+      <div class="table-wrap">
+        <table class="eval">
+          <thead>
+            <tr><th scope="col">Search mode</th><th scope="col" class="num">Hit@5</th><th scope="col" class="num">MRR</th></tr>
+          </thead>
+          <tbody>
+            {% for name in ['keyword', 'vector', 'hybrid'] %}
+            {% if name in about.eval.modes %}
+            {% set m = about.eval.modes[name] %}
+            <tr{% if name == 'hybrid' %} class="eval__hybrid"{% endif %}>
+              <th scope="row">{{ name|capitalize }}</th>
+              <td class="num">{{ '%.2f'|format(m.hit_at_5) }}</td>
+              <td class="num">{{ '%.2f'|format(m.mrr) }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p>Evaluation has not been run yet.</p>
+      {% endif %}
+    </section>
+
+    <section class="about__section" aria-labelledby="setup-h">
+      <h2 id="setup-h" class="about__h">This deployment</h2>
+      <dl class="facts">
+        <div class="facts__row"><dt>Answers</dt><dd>{% if about.generation_mode == 'groq' and about.model %}{{ about.model }} on Groq{% else %}extractive, no generation key{% endif %}</dd></div>
+        <div class="facts__row"><dt>Embeddings</dt><dd>{{ about.embed_model }}</dd></div>
+        <div class="facts__row"><dt>Documents</dt><dd>
+          {% if about.documents %}
+          <ul class="facts__docs">
+            {% for d in about.documents %}<li>{{ d.title }}, {{ '{:,}'.format(d.n_chunks) }} passage{% if d.n_chunks != 1 %}s{% endif %}</li>{% endfor %}
+          </ul>
+          {% else %}none loaded{% endif %}
+        </dd></div>
+        {% if about.rate_limit %}
+        <div class="facts__row"><dt>Rate limit</dt><dd>{{ about.rate_limit.questions }} questions every {{ (about.rate_limit.window_seconds / 60)|round|int }} minutes for each visitor, and {{ '{:,}'.format(about.rate_limit.daily_cap) }} questions a day for the whole site</dd></div>
+        {% endif %}
+      </dl>
+    </section>
+
+    <section class="about__section" aria-labelledby="limits-h">
+      <h2 id="limits-h" class="about__h">What it will not do</h2>
+      {% if limits %}
+      <ul class="limits">
+        {% for item in limits %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+      {% else %}
+      <p>No limits have been listed for this deployment.</p>
+      {% endif %}
+    </section>
+
+    <section class="about__section" aria-labelledby="sources-h">
+      <h2 id="sources-h" class="about__h">Sources</h2>
+      <ul class="sources">
+        <li><a href="https://www.gutenberg.org/ebooks/1661">The Adventures of Sherlock Holmes</a>, Arthur Conan Doyle, Project Gutenberg eBook 1661.</li>
+        <li><a href="https://www.gutenberg.org/ebooks/1404">The Federalist Papers</a>, Hamilton, Madison and Jay, Project Gutenberg eBook 1404.</li>
+        <li><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf">NIST Special Publication 800-63-3, Digital Identity Guidelines</a>, a work of the United States government.</li>
+        <li>The code is at <a href="https://github.com/sahajm99/talk-to-your-data">github.com/sahajm99/talk-to-your-data</a>.</li>
+      </ul>
+    </section>
+  </article>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block body_class %}page--ask{% endblock %}
+{% block body_attrs %} data-generation-mode="{{ generation_mode }}" data-model="{{ model or '' }}" data-max-upload-mb="{{ max_upload_mb }}"{% endblock %}
+{% block main %}
+  <p class="cold-start">Free-tier hosting: the first load after a quiet period can take up to a minute.</p>
+
+  <div class="workbench">
+    <section class="documents" aria-labelledby="documents-h">
+      <h2 id="documents-h" class="section-h">Documents</h2>
+      <ul class="doc-list" id="doc-list">
+        {% for d in documents %}
+        <li class="doc{% if d.scope != 'preloaded' %} doc--mine{% endif %}" data-id="{{ d.id }}">
+          <label class="doc__label">
+            <input class="doc__check" type="checkbox" name="document_ids" value="{{ d.id }}" checked>
+            <span class="doc__title">{{ d.title }}</span>
+            <span class="doc__meta">{{ '{:,}'.format(d.n_chunks) }} passage{% if d.n_chunks != 1 %}s{% endif %}{% if d.scope != 'preloaded' %}, yours{% endif %}</span>
+          </label>
+        </li>
+        {% else %}
+        <li class="doc-list__empty">No documents are loaded yet. Upload one below to start asking.</li>
+        {% endfor %}
+      </ul>
+      <div class="upload">
+        <label class="button upload__button" for="upload-input">
+          <span>Upload a file</span>
+          <input class="upload__input" type="file" id="upload-input" name="file" accept=".pdf,.docx,.txt,.md,application/pdf,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        </label>
+        <p class="upload__note">PDF, Word, text or Markdown, up to {{ '%g'|format(max_upload_mb) }} MB. Uploads live only in this browser session and are deleted after an hour.</p>
+        <p class="upload__status" id="upload-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <form class="ask" id="ask-form" aria-labelledby="ask-h" novalidate>
+      <h2 id="ask-h" class="section-h">Your question</h2>
+      <textarea class="ask__input" id="question" name="question" rows="3" maxlength="500" required autocomplete="off" spellcheck="true" placeholder="What did Holmes deduce from the battered hat?" aria-label="Your question"></textarea>
+      <div class="ask__row">
+        <details class="mode" id="mode">
+          <summary class="mode__summary">Search mode: <span class="mode__current" id="mode-current">hybrid</span></summary>
+          <fieldset class="mode__options">
+            <legend class="visually-hidden">Search mode</legend>
+            <label class="mode__option"><input type="radio" name="mode" value="hybrid" checked> <span class="mode__name">Hybrid</span> <span class="mode__desc">keyword and vector results, fused by reciprocal rank</span></label>
+            <label class="mode__option"><input type="radio" name="mode" value="keyword"> <span class="mode__name">Keyword</span> <span class="mode__desc">BM25 over the words you typed</span></label>
+            <label class="mode__option"><input type="radio" name="mode" value="vector"> <span class="mode__name">Vector</span> <span class="mode__desc">nearest passages by embedding</span></label>
+          </fieldset>
+        </details>
+        <button type="submit" class="button button--primary ask__submit" id="ask-button">Ask</button>
+      </div>
+      <p class="ask__hint">Enter asks; Shift+Enter starts a new line. Up to 500 characters.</p>
+      <div class="try" id="try">
+        <span class="try__label">Or try one:</span>
+        <button type="button" class="try__item">What did Holmes deduce from the battered hat?</button>
+        <button type="button" class="try__item">Why is faction dangerous to popular government?</button>
+        <button type="button" class="try__item">What is an authenticator assurance level?</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="status-row">
+    <p class="status" id="status" role="status" aria-live="polite">
+      {% if generation_mode == 'groq' and model %}Ready. Answers are written by {{ model }} on Groq from the passages it is shown.{% else %}Ready. No generation key is set, so the answer is the best-supported passage with your words highlighted.{% endif %}
+    </p>
+    <p class="error" id="error" role="alert" hidden></p>
+  </div>
+
+  <div class="reading" id="reading">
+    <section class="answer" aria-labelledby="answer-h">
+      <h2 id="answer-h" class="section-h">Answer</h2>
+      <div class="answer__body prose" id="answer">
+        <p class="empty">Ask something, and the answer settles here with numbered links to the passages it rests on.</p>
+      </div>
+    </section>
+
+    <section class="citations" aria-labelledby="citations-h">
+      <h2 id="citations-h" class="section-h">Cited passages</h2>
+      <ol class="cite-list" id="citations">
+        <li class="empty">Each [n] in the answer points to a passage listed here. Click one and the passage comes to you.</li>
+      </ol>
+    </section>
+  </div>
+
+  <section class="retrieval" aria-labelledby="retrieval-h">
+    <h2 id="retrieval-h" class="section-h">How these passages were found</h2>
+    <ol class="hit-list" id="retrieval">
+      <li class="empty">The five passages the search ranked highest will appear here, with their score and whether keyword search, vector search or both found them.</li>
+    </ol>
+  </section>
+{% endblock %}
