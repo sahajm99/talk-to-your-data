@@ -162,27 +162,30 @@ class SqliteStore:
 
     # -- searches -----------------------------------------------------------
 
-    def keyword_search(self, query: str, scopes: list[str], k: int) -> list[tuple[int, float]]:
+    def keyword_search(
+        self, query: str, scopes: list[str], k: int, doc_ids: list[str] | None = None
+    ) -> list[tuple[int, float]]:
         """BM25 over FTS5, restricted to ``scopes``. Scores are positive; higher is better."""
         expr = sanitize_fts_query(query)
         if not expr or not scopes or k <= 0:
             return []
+        doc_clause = f" AND d.id IN ({_placeholders(len(doc_ids))})" if doc_ids else ""
         rows = self.conn.execute(
             f"""
             SELECT c.id AS id, bm25(chunks_fts) AS s
             FROM chunks_fts
             JOIN chunks c ON c.id = chunks_fts.rowid
             JOIN documents d ON d.id = c.doc_id
-            WHERE chunks_fts MATCH ? AND d.scope IN ({_placeholders(len(scopes))})
+            WHERE chunks_fts MATCH ? AND d.scope IN ({_placeholders(len(scopes))}){doc_clause}
             ORDER BY s ASC, c.id ASC
             LIMIT ?
             """,
-            (expr, *scopes, k),
+            (expr, *scopes, *(doc_ids or []), k),
         ).fetchall()
         return [(r["id"], -float(r["s"])) for r in rows]
 
     def vector_search(
-        self, vector: list[float], scopes: list[str], k: int
+        self, vector: list[float], scopes: list[str], k: int, doc_ids: list[str] | None = None
     ) -> list[tuple[int, float]]:
         """KNN over vec0 (cosine distance, lower is better), restricted to ``scopes``.
 
@@ -209,24 +212,27 @@ class SqliteStore:
                 " WHERE embedding MATCH ? AND k = ? ORDER BY distance",
                 (blob, window),
             ).fetchall()
-            allowed = self._ids_in_scopes([r["chunk_id"] for r in rows], scopes)
+            allowed = self._ids_in_scopes([r["chunk_id"] for r in rows], scopes, doc_ids)
             kept = [(r["chunk_id"], float(r["distance"])) for r in rows if r["chunk_id"] in allowed]
             if len(kept) >= k or window >= total:
                 break
             window *= 4
         return kept[:k]
 
-    def _ids_in_scopes(self, ids: list[int], scopes: list[str], batch: int = 500) -> set[int]:
+    def _ids_in_scopes(
+        self, ids: list[int], scopes: list[str], doc_ids: list[str] | None = None, batch: int = 500
+    ) -> set[int]:
         allowed: set[int] = set()
+        doc_clause = f" AND d.id IN ({_placeholders(len(doc_ids))})" if doc_ids else ""
         for i in range(0, len(ids), batch):
             part = ids[i : i + batch]
             rows = self.conn.execute(
                 f"""
                 SELECT c.id FROM chunks c JOIN documents d ON d.id = c.doc_id
                 WHERE c.id IN ({_placeholders(len(part))})
-                  AND d.scope IN ({_placeholders(len(scopes))})
+                  AND d.scope IN ({_placeholders(len(scopes))}){doc_clause}
                 """,
-                (*part, *scopes),
+                (*part, *scopes, *(doc_ids or [])),
             ).fetchall()
             allowed.update(r["id"] for r in rows)
         return allowed

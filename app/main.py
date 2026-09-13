@@ -1,102 +1,109 @@
-"""FastAPI application entrypoint."""
+"""FastAPI application: lifespan wiring, API routers and the two pages."""
 
+from __future__ import annotations
+
+import asyncio
+import contextlib
 import logging
-from pathlib import Path
+import os
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
+from pathlib import Path
+
+from fastapi import FastAPI, Request
+from fastapi.concurrency import run_in_threadpool
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
-from app.config import settings
-from app.ingestion.vector_store import WeaviateVectorStore
-from app.ingestion.embedder import get_embedder, BaseEmbedder
-from app.api import routes_health, routes_ingest, routes_chat
+from app.api import routes_ask, routes_health, routes_ingest
+from app.api.deps import LIMITS, LockedStore, about_info, visible_documents
+from app.config import get_settings
+from app.ingestion.embedder import get_embedder
+from app.ingestion.store import SqliteStore
+from app.services.generation import generation_status, get_generator
+from app.services.ratelimit import RateLimiter
+from app.services.sessions import SessionManager, purge_all
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
+APP_DIR = Path(__file__).resolve().parent
+SWEEP_SECONDS = 300
+log = logging.getLogger("app")
+templates = Jinja2Templates(directory=str(APP_DIR / "templates"))
 
-# Global instances (initialized at startup)
-vector_store: WeaviateVectorStore | None = None
-embedder: BaseEmbedder | None = None
+
+def _warm_up(state) -> None:
+    state.embedder.embed_query("warm up")
+    gen = get_generator(state.settings)
+    if gen is not None:
+        try:
+            gen.model()
+        except Exception as exc:
+            log.warning("Groq model lookup failed at startup: %s", exc)
+
+
+async def _sweeper(app: FastAPI) -> None:
+    while True:
+        await asyncio.sleep(SWEEP_SECONDS)
+        with contextlib.suppress(Exception):
+            removed = await run_in_threadpool(app.state.sessions.sweep, app.state.store)
+            if removed:
+                log.info("expired session documents deleted: %d", removed)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Lifespan context manager for startup/shutdown events."""
-    # Startup
-    global vector_store, embedder
-    
-    logger.info("Initializing Weaviate connection...")
-    vector_store = WeaviateVectorStore(
-        weaviate_url=settings.weaviate_url,
-        weaviate_api_key=settings.weaviate_api_key,
-        class_name=settings.weaviate_class_name,
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
+    settings = get_settings()
+    embedder = get_embedder(settings)
+    if not Path(settings.index_path).exists():
+        log.warning("No index at %s; run `uv run python -m app.ingestion.preload` first", settings.index_path)
+    store = SqliteStore(settings.index_path, embedder.dim)
+    purged = purge_all(store)
+    if purged:
+        log.info("uploads left from a previous run deleted: %d", purged)
+    state = app.state
+    state.settings, state.embedder, state.store = settings, embedder, LockedStore(store)
+    state.sessions = SessionManager(settings.session_ttl_minutes)
+    state.limiter = RateLimiter(
+        settings.rate_limit_questions, settings.rate_limit_window_seconds, settings.daily_question_cap
     )
-    
-    logger.info("Ensuring Weaviate schema...")
-    vector_store.ensure_schema()
-    
-    logger.info("Initializing embedder...")
-    embedder = get_embedder()
-    
-    logger.info("Application startup complete")
-    
-    yield
-    
-    # Shutdown
-    logger.info("Shutting down...")
-    if vector_store:
-        vector_store.close()
-    logger.info("Application shutdown complete")
+    await run_in_threadpool(_warm_up, state)
+    sweeper = asyncio.create_task(_sweeper(app))
+    try:
+        yield
+    finally:
+        sweeper.cancel()
+        store.close()
 
 
-# Create FastAPI app
-app = FastAPI(
-    title="Talk To Your Data - Document Intelligence API",
-    description="Upload documents with visual grounding and chat with your data using RAG",
-    version="2.0.0",
-    lifespan=lifespan,
-)
-
-# Include routers
-app.include_router(routes_health.router)
+app = FastAPI(title="Talk To Your Data", lifespan=lifespan)
+app.mount("/static", StaticFiles(directory=str(APP_DIR / "static")), name="static")
+app.include_router(routes_ask.router)
 app.include_router(routes_ingest.router)
-app.include_router(routes_chat.router)
-
-# Mount static files for web application
-static_dir = Path(__file__).parent.parent / "static"
-if static_dir.exists():
-    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
-    logger.info(f"Mounted web app static files from {static_dir}")
-else:
-    logger.warning(f"Static directory {static_dir} does not exist. Web app disabled.")
-
-# Mount static files for serving chunk images and documents
-data_dir = Path(settings.data_dir)
-if data_dir.exists():
-    app.mount("/data", StaticFiles(directory=str(data_dir)), name="data")
-    logger.info(f"Mounted data files from {data_dir}")
-else:
-    logger.warning(f"Data directory {data_dir} does not exist. Creating it...")
-    # Create the directory
-    data_dir.mkdir(parents=True, exist_ok=True)
-    app.mount("/data", StaticFiles(directory=str(data_dir)), name="data")
-    logger.info(f"Created and mounted data directory at {data_dir}")
+app.include_router(routes_health.router)
 
 
-@app.get("/")
-async def root():
-    """Serve the web application."""
-    static_dir = Path(__file__).parent.parent / "static"
-    index_file = static_dir / "index.html"
+def _base_context(request: Request) -> dict:
+    settings = request.app.state.settings
+    return {"public_url": settings.public_url, "host": "render" if os.environ.get("RENDER") else "local"}
 
-    if index_file.exists():
-        return FileResponse(index_file)
-    else:
-        # Fallback if static files don't exist
-        return RedirectResponse(url="/docs")
 
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+def index(request: Request):
+    state = request.app.state
+    session_id, _ = state.sessions.resolve(request)
+    mode, model = generation_status(state.settings)
+    context = _base_context(request) | {
+        "documents": visible_documents(state, session_id),
+        "generation_mode": mode,
+        "model": model,
+        "max_upload_mb": state.settings.max_upload_bytes / 1e6,
+    }
+    resp = templates.TemplateResponse(request, "index.html", context)
+    state.sessions.set_cookie(resp, session_id, request)
+    return resp
+
+
+@app.get("/about", response_class=HTMLResponse, include_in_schema=False)
+def about(request: Request):
+    context = _base_context(request) | {"about": about_info(request.app.state), "limits": LIMITS}
+    return templates.TemplateResponse(request, "about.html", context)

@@ -54,6 +54,7 @@ def hybrid_search(
     k: int = 5,
     candidates: int = 20,
     mode: str = "hybrid",
+    doc_ids: list[str] | None = None,
 ) -> list[Hit]:
     """Top-``k`` chunks for ``query`` within ``scopes``.
 
@@ -69,9 +70,9 @@ def hybrid_search(
     kw: list[tuple[int, float]] = []
     vec: list[tuple[int, float]] = []
     if mode in ("keyword", "hybrid"):
-        kw = store.keyword_search(query, scopes, candidates)
+        kw = store.keyword_search(query, scopes, candidates, doc_ids)
     if mode in ("vector", "hybrid"):
-        vec = store.vector_search(embedder.embed_query(query), scopes, candidates)
+        vec = store.vector_search(embedder.embed_query(query), scopes, candidates, doc_ids)
 
     kw_rank = {id_: r for r, (id_, _) in enumerate(kw, start=1)}
     vec_rank = {id_: r for r, (id_, _) in enumerate(vec, start=1)}
