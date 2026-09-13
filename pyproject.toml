@@ -1,0 +1,41 @@
+[project]
+name = "talk-to-your-data"
+version = "2.0.0"
+description = "Ask questions of a document and get cited answers; free-tier RAG with SQLite FTS5 + sqlite-vec and in-process embeddings"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { file = "LICENSE" }
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "pydantic>=2",
+    "pydantic-settings",
+    "jinja2",
+    "httpx",
+    "fastembed>=0.8",
+    "sqlite-vec>=0.1.6",
+    "beautifulsoup4",
+    "pdfplumber",
+    "python-docx",
+    "aiofiles",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

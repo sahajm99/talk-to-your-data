@@ -1,34 +1,51 @@
-"""Configuration management using environment variables."""
+"""Application settings (pydantic-settings, read from the environment and `.env`)."""
 
-from pydantic_settings import BaseSettings
-from typing import Optional
+from functools import lru_cache
+from pathlib import Path
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """Application settings loaded from environment variables."""
+    """Runtime configuration. Field names map to upper-case environment variables."""
 
-    # OpenAI Configuration
-    openai_api_key: str
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="ignore",
+    )
 
-    # Weaviate Configuration
-    weaviate_url: str = "http://localhost:8080"
-    weaviate_api_key: Optional[str] = None
-    weaviate_class_name: str = "IngestedChunk"  # Configurable class name
+    # Generation (Groq; without a key the app answers extractively)
+    groq_api_key: str | None = None
+    groq_model: str = "llama-3.3-70b-versatile"
+    groq_fallback_model: str = "llama-3.1-8b-instant"
 
-    # Chunking Configuration
-    chunk_max_tokens: int = 400
+    # Embeddings ("fake" selects the deterministic FakeEmbedder)
+    embed_model: str = "BAAI/bge-small-en-v1.5"
+
+    # Storage
+    data_dir: Path = Path("data")
+    index_path: Path = Path("data/index.db")
+
+    # Chunking and retrieval
+    chunk_max_tokens: int = 300
     chunk_overlap_tokens: int = 50
+    top_k: int = 5
+    candidates_per_source: int = 20
 
-    # Data Storage Configuration (Phase 1)
-    data_dir: str = "./data"  # Base directory for storing documents and images
-    use_visual_grounding: bool = True  # Enable/disable visual grounding
+    # Abuse limits
+    rate_limit_questions: int = 10
+    rate_limit_window_seconds: int = 600
+    daily_question_cap: int = 500
+    max_upload_bytes: int = 2_000_000
+    session_ttl_minutes: int = 60
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = False
+    # Deployment
+    public_url: str = ""
 
 
-# Singleton settings instance
-settings = Settings()
-
+@lru_cache
+def get_settings() -> Settings:
+    """Process-wide cached settings instance."""
+    return Settings()
