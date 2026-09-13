@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "doc": "sherlock-holmes",
+    "question": "What full title does Holmes use when he addresses the masked visitor who claims to be a Bohemian nobleman?",
+    "answer_phrase": "Grand Duke of Cassel-Felstein, and hereditary King of Bohemia",
+    "kind": "entity"
+  },
+  {
+    "id": 2,
+    "doc": "sherlock-holmes",
+    "question": "How does Holmes describe Watson's importance to him when Watson offers to leave before the royal client arrives?",
+    "answer_phrase": "I am lost without my Boswell",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 3,
+    "doc": "sherlock-holmes",
+    "question": "How does Watson say Sherlock Holmes always refers to Irene Adler?",
+    "answer_phrase": "To Sherlock Holmes she is always _the_ woman",
+    "kind": "lexical"
+  },
+  {
+    "id": 4,
+    "doc": "sherlock-holmes",
+    "question": "What weekly salary did the Red-Headed League advertise for purely nominal services?",
+    "answer_phrase": "4 a week for purely nominal services",
+    "kind": "lexical"
+  },
+  {
+    "id": 5,
+    "doc": "sherlock-holmes",
+    "question": "What date was printed on the card announcing that the Red-Headed League was dissolved?",
+    "answer_phrase": "THE RED-HEADED LEAGUE IS DISSOLVED. October 9, 1890",
+    "kind": "entity"
+  },
+  {
+    "id": 6,
+    "doc": "sherlock-holmes",
+    "question": "How much money did Mary Sutherland inherit in New Zealand stock from her uncle Ned?",
+    "answer_phrase": "Two thousand five hundred pounds was the amount",
+    "kind": "entity"
+  },
+  {
+    "id": 7,
+    "doc": "sherlock-holmes",
+    "question": "How does Holmes describe the man who killed Charles McCarthy when Lestrade asks him?",
+    "answer_phrase": "smokes Indian cigars, uses a cigar-holder, and carries a blunt pen-knife",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 8,
+    "doc": "sherlock-holmes",
+    "question": "According to the encyclopaedia entry Holmes reads aloud, where did the Ku Klux Klan get its name?",
+    "answer_phrase": "resemblance to the sound produced by cocking a rifle",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 9,
+    "doc": "sherlock-holmes",
+    "question": "Where in Upper Swandam Lane was Mrs. St. Clair sure her husband would be found?",
+    "answer_phrase": "at the Bar of Gold, in Upper Swandam Lane",
+    "kind": "lexical"
+  },
+  {
+    "id": 10,
+    "doc": "sherlock-holmes",
+    "question": "What real name did the hotel attendant admit to after Holmes rejected the alias John Robinson?",
+    "answer_phrase": "my real name is James Ryder",
+    "kind": "entity"
+  },
+  {
+    "id": 11,
+    "doc": "sherlock-holmes",
+    "question": "What kind of creature turned out to be the speckled band that killed Dr. Roylott?",
+    "answer_phrase": "It is a swamp adder",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 12,
+    "doc": "sherlock-holmes",
+    "question": "What name, style, and abode were printed on the card of the hydraulic engineer who visited Watson?",
+    "answer_phrase": "Victor Hatherley, hydraulic engineer, 16a, Victoria Street",
+    "kind": "lexical"
+  },
+  {
+    "id": 13,
+    "doc": "sherlock-holmes",
+    "question": "How many beryls were set in the coronet that Alexander Holder brought home from the bank?",
+    "answer_phrase": "There are thirty-nine enormous beryls",
+    "kind": "entity"
+  },
+  {
+    "id": 14,
+    "doc": "sherlock-holmes",
+    "question": "What animal is let loose on the grounds of the Copper Beeches every night, and what is it called?",
+    "answer_phrase": "Carlo, my mastiff. I call him mine",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 15,
+    "doc": "federalist-papers",
+    "question": "What important question does Hamilton say the American people are to decide, in the opening paper?",
+    "answer_phrase": "establishing good government from reflection and choice",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 16,
+    "doc": "federalist-papers",
+    "question": "How does Madison define a faction in Federalist No. 10?",
+    "answer_phrase": "By a faction, I understand a number of citizens",
+    "kind": "lexical"
+  },
+  {
+    "id": 17,
+    "doc": "federalist-papers",
+    "question": "What does Madison identify as the most common and durable source of factions?",
+    "answer_phrase": "the various and unequal distribution of property",
+    "kind": "lexical"
+  },
+  {
+    "id": 18,
+    "doc": "federalist-papers",
+    "question": "Under what hypothetical condition would there be no need for any government at all?",
+    "answer_phrase": "If men were angels, no government would be necessary",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 19,
+    "doc": "federalist-papers",
+    "question": "What does Madison call the accumulation of legislative, executive, and judiciary powers in the same hands?",
+    "answer_phrase": "may justly be pronounced the very definition of tyranny",
+    "kind": "lexical"
+  },
+  {
+    "id": 20,
+    "doc": "federalist-papers",
+    "question": "Why does Hamilton consider the courts the branch least able to threaten the political rights of the Constitution?",
+    "answer_phrase": "neither FORCE nor WILL, but merely judgment",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 21,
+    "doc": "federalist-papers",
+    "question": "What ingredients constitute energy in the executive, according to Federalist No. 70?",
+    "answer_phrase": "first, unity; secondly, duration; thirdly, an adequate provision for its support",
+    "kind": "lexical"
+  },
+  {
+    "id": 22,
+    "doc": "federalist-papers",
+    "question": "Does Hamilton think the Constitution needs an enumerated list of protected rights, and why not?",
+    "answer_phrase": "not only unnecessary in the proposed Constitution, but would even be dangerous",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 23,
+    "doc": "federalist-papers",
+    "question": "What role did Hamilton think popular opinion ought to have in choosing the chief executive?",
+    "answer_phrase": "It was desirable that the sense of the people should operate",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 24,
+    "doc": "federalist-papers",
+    "question": "Which English charter does Hamilton describe as having been obtained by the barons from King John?",
+    "answer_phrase": "Magna Charta, obtained by the barons, sword in hand, from King John",
+    "kind": "entity"
+  },
+  {
+    "id": 25,
+    "doc": "federalist-papers",
+    "question": "In Federalist No. 69, for how long is the President elected, in contrast with the King of Great Britain?",
+    "answer_phrase": "elected by the people for FOUR years",
+    "kind": "entity"
+  },
+  {
+    "id": 26,
+    "doc": "federalist-papers",
+    "question": "What minimum age must a senator have reached, compared with a representative?",
+    "answer_phrase": "A senator must be thirty years of age at least",
+    "kind": "entity"
+  },
+  {
+    "id": 27,
+    "doc": "federalist-papers",
+    "question": "What does Hamilton say results from thirteen independent courts of final jurisdiction over the same causes?",
+    "answer_phrase": "is a hydra in government, from which nothing but contradiction and confusion",
+    "kind": "lexical"
+  },
+  {
+    "id": 28,
+    "doc": "nist-sp-800-63-3",
+    "question": "What does identity proofing establish about a subject?",
+    "answer_phrase": "Identity proofing establishes that a subject is who they claim to be",
+    "kind": "lexical"
+  },
+  {
+    "id": 29,
+    "doc": "nist-sp-800-63-3",
+    "question": "Which identity assurance level requires physical presence for identity proofing?",
+    "answer_phrase": "IAL3: Physical presence is required for identity proofing",
+    "kind": "entity"
+  },
+  {
+    "id": 30,
+    "doc": "nist-sp-800-63-3",
+    "question": "How many distinct authentication factors must a claimant prove possession and control of at AAL2?",
+    "answer_phrase": "Proof of possession and control of two distinct authentication factors",
+    "kind": "entity"
+  },
+  {
+    "id": 31,
+    "doc": "nist-sp-800-63-3",
+    "question": "What kind of authenticator must AAL3 authentication use?",
+    "answer_phrase": "AAL3 authentication SHALL use a hardware-based authenticator",
+    "kind": "lexical"
+  },
+  {
+    "id": 32,
+    "doc": "nist-sp-800-63-3",
+    "question": "Beyond signing, what protection does the second federation assurance level add so that nobody else can read an assertion?",
+    "answer_phrase": "the RP is the only party that can decrypt it",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 33,
+    "doc": "nist-sp-800-63-3",
+    "question": "At FAL3, what must the subscriber present in addition to the assertion itself?",
+    "answer_phrase": "present proof of possession of a cryptographic key referenced in the assertion",
+    "kind": "lexical"
+  },
+  {
+    "id": 34,
+    "doc": "nist-sp-800-63-3",
+    "question": "What three factors does the classic paradigm identify as the cornerstones of authentication?",
+    "answer_phrase": "Something you have (e.g., an ID badge or a cryptographic key)",
+    "kind": "lexical"
+  },
+  {
+    "id": 35,
+    "doc": "nist-sp-800-63-3",
+    "question": "Do these guidelines cover checking who someone is before letting them into a building?",
+    "answer_phrase": "do not address the authentication of subjects for physical access",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 36,
+    "doc": "nist-sp-800-63-3",
+    "question": "Under which 2014 statute do federal agencies have statutory responsibilities that these guidelines say they should adhere to?",
+    "answer_phrase": "Federal Information Security Modernization Act (FISMA) of 2014",
+    "kind": "entity"
+  },
+  {
+    "id": 37,
+    "doc": "nist-sp-800-63-3",
+    "question": "What terminology change did the third revision make to avoid a conflict with a word used in assertion technologies?",
+    "answer_phrase": "the use of authenticator in place of token",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 38,
+    "doc": "nist-sp-800-63-3",
+    "question": "How many factors does the guideline consider sufficient even for the most demanding security needs?",
+    "answer_phrase": "using two factors is adequate to meet the highest security requirements",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 39,
+    "doc": "nist-sp-800-63-3",
+    "question": "Can a fingerprint on its own serve as an acceptable secret for digital authentication?",
+    "answer_phrase": "A biometric also does not constitute a secret",
+    "kind": "paraphrase"
+  },
+  {
+    "id": 40,
+    "doc": "nist-sp-800-63-3",
+    "question": "Under Executive Order 13681, what protection is required when personal data is released, even if it is self-asserted?",
+    "answer_phrase": "the release of personal data requires protection with MFA",
+    "kind": "entity"
+  }
+]
