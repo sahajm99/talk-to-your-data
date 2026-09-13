@@ -19,9 +19,11 @@ GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 EXTRACTIVE_LEAD = "Best-supported passage:"
 NO_MATCH = "No passage in the selected documents matches this question."
 SYSTEM_PROMPT = (
-    "You answer questions using only the numbered passages you are given. "
+    "You answer questions using only the numbered passages you are given, never outside knowledge. "
     "Cite every claim with its passage number in square brackets, like [1] or [2]. "
-    "If the passages do not contain the answer, reply exactly: The documents do not say. "
+    "Draw reasonable conclusions from what the passages show, such as a signature, a byline or a heading, "
+    "and say so when you do. If the passages answer only part of the question, give that part and say "
+    "what they leave out. Reply exactly 'The documents do not say.' only when no passage is relevant. "
     "Answer in at most five sentences of plain text, no headings or lists."
 )
 _STOPWORDS = frozenset(
@@ -116,6 +118,9 @@ class GroqGenerator:
         resp = self._client.post("/chat/completions", json=payload)
         resp.raise_for_status()
         text = (resp.json()["choices"][0]["message"].get("content") or "").strip()
+        # gpt-oss sometimes cites as 【4†L9-L13】; the page links only [4].
+        text = re.sub(r"【\s*(\d{1,2})[^】]*】", r"[\1]", text)
+        text = re.sub(r"(\[\d{1,2}\])(?:\s*\1)+", r"\1", text)
         if not text:
             raise ValueError("empty completion")
         cited = sorted({int(n) for n in re.findall(r"\[(\d{1,2})\]", text) if 1 <= int(n) <= len(hits)})
