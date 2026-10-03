@@ -22,9 +22,15 @@ ENV/
 *.swp
 *.swo
 .cursor/
+.claude/
+.superpowers/
 
-# Data (uploaded documents and sessions)
-data/
+# Data: the preloaded documents and their provenance note ship with the repo.
+# The SQLite index is rebuilt by `python -m app.ingestion.preload` and session
+# uploads are never committed.
+data/*
+!data/preloaded/
+!data/SOURCE.md
 
 # Logs
 *.log
