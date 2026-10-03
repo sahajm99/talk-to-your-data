@@ -1,0 +1,2614 @@
+{
+  "n_questions": 40,
+  "k": 5,
+  "candidates": 20,
+  "embed_model": "BAAI/bge-small-en-v1.5",
+  "generated_at": "2026-09-13T00:43:59+00:00",
+  "elapsed_seconds": 9.5,
+  "scope": "all_documents",
+  "modes": {
+    "keyword": {
+      "hit_at_5": 0.75,
+      "mrr": 0.588
+    },
+    "vector": {
+      "hit_at_5": 0.575,
+      "mrr": 0.372
+    },
+    "hybrid": {
+      "hit_at_5": 0.775,
+      "mrr": 0.542
+    }
+  },
+  "scopes": {
+    "all_documents": {
+      "description": "Query over every preloaded chunk (all three documents), k = 5, candidates = 20.",
+      "modes": {
+        "keyword": {
+          "hit_at_5": 0.75,
+          "mrr": 0.588,
+          "hits": 30,
+          "n": 40
+        },
+        "vector": {
+          "hit_at_5": 0.575,
+          "mrr": 0.372,
+          "hits": 23,
+          "n": 40
+        },
+        "hybrid": {
+          "hit_at_5": 0.775,
+          "mrr": 0.542,
+          "hits": 31,
+          "n": 40
+        }
+      },
+      "by_kind": {
+        "entity": {
+          "n": 12,
+          "keyword": {
+            "hit_at_5": 0.833,
+            "mrr": 0.662,
+            "hits": 10,
+            "n": 12
+          },
+          "vector": {
+            "hit_at_5": 0.667,
+            "mrr": 0.413,
+            "hits": 8,
+            "n": 12
+          },
+          "hybrid": {
+            "hit_at_5": 0.833,
+            "mrr": 0.603,
+            "hits": 10,
+            "n": 12
+          }
+        },
+        "lexical": {
+          "n": 13,
+          "keyword": {
+            "hit_at_5": 0.846,
+            "mrr": 0.744,
+            "hits": 11,
+            "n": 13
+          },
+          "vector": {
+            "hit_at_5": 0.462,
+            "mrr": 0.301,
+            "hits": 6,
+            "n": 13
+          },
+          "hybrid": {
+            "hit_at_5": 0.769,
+            "mrr": 0.515,
+            "hits": 10,
+            "n": 13
+          }
+        },
+        "paraphrase": {
+          "n": 15,
+          "keyword": {
+            "hit_at_5": 0.6,
+            "mrr": 0.394,
+            "hits": 9,
+            "n": 15
+          },
+          "vector": {
+            "hit_at_5": 0.6,
+            "mrr": 0.402,
+            "hits": 9,
+            "n": 15
+          },
+          "hybrid": {
+            "hit_at_5": 0.733,
+            "mrr": 0.516,
+            "hits": 11,
+            "n": 15
+          }
+        }
+      },
+      "by_doc": {
+        "federalist-papers": {
+          "n": 13,
+          "keyword": {
+            "hit_at_5": 0.692,
+            "mrr": 0.615,
+            "hits": 9,
+            "n": 13
+          },
+          "vector": {
+            "hit_at_5": 0.462,
+            "mrr": 0.323,
+            "hits": 6,
+            "n": 13
+          },
+          "hybrid": {
+            "hit_at_5": 0.692,
+            "mrr": 0.541,
+            "hits": 9,
+            "n": 13
+          }
+        },
+        "nist-sp-800-63-3": {
+          "n": 13,
+          "keyword": {
+            "hit_at_5": 0.692,
+            "mrr": 0.603,
+            "hits": 9,
+            "n": 13
+          },
+          "vector": {
+            "hit_at_5": 0.615,
+            "mrr": 0.436,
+            "hits": 8,
+            "n": 13
+          },
+          "hybrid": {
+            "hit_at_5": 0.846,
+            "mrr": 0.521,
+            "hits": 11,
+            "n": 13
+          }
+        },
+        "sherlock-holmes": {
+          "n": 14,
+          "keyword": {
+            "hit_at_5": 0.857,
+            "mrr": 0.55,
+            "hits": 12,
+            "n": 14
+          },
+          "vector": {
+            "hit_at_5": 0.643,
+            "mrr": 0.36,
+            "hits": 9,
+            "n": 14
+          },
+          "hybrid": {
+            "hit_at_5": 0.786,
+            "mrr": 0.562,
+            "hits": 11,
+            "n": 14
+          }
+        }
+      }
+    },
+    "within_document": {
+      "description": "Full corpus ranking filtered to the question's own document, then top 5. Keyword and vector ranks equal a single-document search; hybrid keeps the corpus-wide RRF order.",
+      "modes": {
+        "keyword": {
+          "hit_at_5": 0.75,
+          "mrr": 0.588,
+          "hits": 30,
+          "n": 40
+        },
+        "vector": {
+          "hit_at_5": 0.575,
+          "mrr": 0.372,
+          "hits": 23,
+          "n": 40
+        },
+        "hybrid": {
+          "hit_at_5": 0.775,
+          "mrr": 0.546,
+          "hits": 31,
+          "n": 40
+        }
+      },
+      "by_kind": {
+        "entity": {
+          "n": 12,
+          "keyword": {
+            "hit_at_5": 0.833,
+            "mrr": 0.662,
+            "hits": 10,
+            "n": 12
+          },
+          "vector": {
+            "hit_at_5": 0.667,
+            "mrr": 0.413,
+            "hits": 8,
+            "n": 12
+          },
+          "hybrid": {
+            "hit_at_5": 0.833,
+            "mrr": 0.607,
+            "hits": 10,
+            "n": 12
+          }
+        },
+        "lexical": {
+          "n": 13,
+          "keyword": {
+            "hit_at_5": 0.846,
+            "mrr": 0.744,
+            "hits": 11,
+            "n": 13
+          },
+          "vector": {
+            "hit_at_5": 0.462,
+            "mrr": 0.301,
+            "hits": 6,
+            "n": 13
+          },
+          "hybrid": {
+            "hit_at_5": 0.769,
+            "mrr": 0.515,
+            "hits": 10,
+            "n": 13
+          }
+        },
+        "paraphrase": {
+          "n": 15,
+          "keyword": {
+            "hit_at_5": 0.6,
+            "mrr": 0.394,
+            "hits": 9,
+            "n": 15
+          },
+          "vector": {
+            "hit_at_5": 0.6,
+            "mrr": 0.402,
+            "hits": 9,
+            "n": 15
+          },
+          "hybrid": {
+            "hit_at_5": 0.733,
+            "mrr": 0.524,
+            "hits": 11,
+            "n": 15
+          }
+        }
+      },
+      "by_doc": {
+        "federalist-papers": {
+          "n": 13,
+          "keyword": {
+            "hit_at_5": 0.692,
+            "mrr": 0.615,
+            "hits": 9,
+            "n": 13
+          },
+          "vector": {
+            "hit_at_5": 0.462,
+            "mrr": 0.323,
+            "hits": 6,
+            "n": 13
+          },
+          "hybrid": {
+            "hit_at_5": 0.692,
+            "mrr": 0.541,
+            "hits": 9,
+            "n": 13
+          }
+        },
+        "nist-sp-800-63-3": {
+          "n": 13,
+          "keyword": {
+            "hit_at_5": 0.692,
+            "mrr": 0.603,
+            "hits": 9,
+            "n": 13
+          },
+          "vector": {
+            "hit_at_5": 0.615,
+            "mrr": 0.436,
+            "hits": 8,
+            "n": 13
+          },
+          "hybrid": {
+            "hit_at_5": 0.846,
+            "mrr": 0.531,
+            "hits": 11,
+            "n": 13
+          }
+        },
+        "sherlock-holmes": {
+          "n": 14,
+          "keyword": {
+            "hit_at_5": 0.857,
+            "mrr": 0.55,
+            "hits": 12,
+            "n": 14
+          },
+          "vector": {
+            "hit_at_5": 0.643,
+            "mrr": 0.36,
+            "hits": 9,
+            "n": 14
+          },
+          "hybrid": {
+            "hit_at_5": 0.786,
+            "mrr": 0.565,
+            "hits": 11,
+            "n": 14
+          }
+        }
+      }
+    }
+  },
+  "kinds": {
+    "entity": 12,
+    "lexical": 13,
+    "paraphrase": 15
+  },
+  "index": {
+    "path": "data/index.db",
+    "documents": 3,
+    "chunks": 1273
+  },
+  "documents": [
+    {
+      "key": "federalist-papers",
+      "id": "f884f5e1f2dc",
+      "title": "The Federalist Papers",
+      "n_chunks": 770
+    },
+    {
+      "key": "nist-sp-800-63-3",
+      "id": "f0aaf8a1dd65",
+      "title": "NIST SP 800-63-3 Digital Identity Guidelines",
+      "n_chunks": 85
+    },
+    {
+      "key": "sherlock-holmes",
+      "id": "302104f0dd48",
+      "title": "The Adventures of Sherlock Holmes",
+      "n_chunks": 418
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "doc": "sherlock-holmes",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        866
+      ]
+    },
+    {
+      "id": 2,
+      "doc": "sherlock-holmes",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        863
+      ]
+    },
+    {
+      "id": 3,
+      "doc": "sherlock-holmes",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        856
+      ]
+    },
+    {
+      "id": 4,
+      "doc": "sherlock-holmes",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        895
+      ]
+    },
+    {
+      "id": 5,
+      "doc": "sherlock-holmes",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        905
+      ]
+    },
+    {
+      "id": 6,
+      "doc": "sherlock-holmes",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        933
+      ]
+    },
+    {
+      "id": 7,
+      "doc": "sherlock-holmes",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        982
+      ]
+    },
+    {
+      "id": 8,
+      "doc": "sherlock-holmes",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        1015
+      ]
+    },
+    {
+      "id": 9,
+      "doc": "sherlock-holmes",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        1024
+      ]
+    },
+    {
+      "id": 10,
+      "doc": "sherlock-holmes",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        1082
+      ]
+    },
+    {
+      "id": 11,
+      "doc": "sherlock-holmes",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        1126
+      ]
+    },
+    {
+      "id": 12,
+      "doc": "sherlock-holmes",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        1132
+      ]
+    },
+    {
+      "id": 13,
+      "doc": "sherlock-holmes",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        1200
+      ]
+    },
+    {
+      "id": 14,
+      "doc": "sherlock-holmes",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        1257,
+        1258
+      ]
+    },
+    {
+      "id": 15,
+      "doc": "federalist-papers",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "doc": "federalist-papers",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        68
+      ]
+    },
+    {
+      "id": 17,
+      "doc": "federalist-papers",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        70
+      ]
+    },
+    {
+      "id": 18,
+      "doc": "federalist-papers",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        445
+      ]
+    },
+    {
+      "id": 19,
+      "doc": "federalist-papers",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        414
+      ]
+    },
+    {
+      "id": 20,
+      "doc": "federalist-papers",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        672
+      ]
+    },
+    {
+      "id": 21,
+      "doc": "federalist-papers",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        605
+      ]
+    },
+    {
+      "id": 22,
+      "doc": "federalist-papers",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        747,
+        748
+      ]
+    },
+    {
+      "id": 23,
+      "doc": "federalist-papers",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        586
+      ]
+    },
+    {
+      "id": 24,
+      "doc": "federalist-papers",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        746
+      ]
+    },
+    {
+      "id": 25,
+      "doc": "federalist-papers",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        601,
+        602
+      ]
+    },
+    {
+      "id": 26,
+      "doc": "federalist-papers",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        531
+      ]
+    },
+    {
+      "id": 27,
+      "doc": "federalist-papers",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        688,
+        689
+      ]
+    },
+    {
+      "id": 28,
+      "doc": "nist-sp-800-63-3",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        776,
+        785
+      ]
+    },
+    {
+      "id": 29,
+      "doc": "nist-sp-800-63-3",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        780
+      ]
+    },
+    {
+      "id": 30,
+      "doc": "nist-sp-800-63-3",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        781
+      ]
+    },
+    {
+      "id": 31,
+      "doc": "nist-sp-800-63-3",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        781
+      ]
+    },
+    {
+      "id": 32,
+      "doc": "nist-sp-800-63-3",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        782,
+        811
+      ]
+    },
+    {
+      "id": 33,
+      "doc": "nist-sp-800-63-3",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        782,
+        811
+      ]
+    },
+    {
+      "id": 34,
+      "doc": "nist-sp-800-63-3",
+      "kind": "lexical",
+      "gold_chunk_ids": [
+        800
+      ]
+    },
+    {
+      "id": 35,
+      "doc": "nist-sp-800-63-3",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        791
+      ]
+    },
+    {
+      "id": 36,
+      "doc": "nist-sp-800-63-3",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        771,
+        772,
+        791
+      ]
+    },
+    {
+      "id": 37,
+      "doc": "nist-sp-800-63-3",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        793
+      ]
+    },
+    {
+      "id": 38,
+      "doc": "nist-sp-800-63-3",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        800
+      ]
+    },
+    {
+      "id": 39,
+      "doc": "nist-sp-800-63-3",
+      "kind": "paraphrase",
+      "gold_chunk_ids": [
+        802
+      ]
+    },
+    {
+      "id": 40,
+      "doc": "nist-sp-800-63-3",
+      "kind": "entity",
+      "gold_chunk_ids": [
+        829
+      ]
+    }
+  ],
+  "per_question": [
+    {
+      "id": 1,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 1,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 1,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 1,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 1,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 1,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 4
+    },
+    {
+      "id": 2,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 2,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 2,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 2,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 2,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 2,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 3,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 3,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 4
+    },
+    {
+      "id": 3,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 3,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 3,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 4
+    },
+    {
+      "id": 3,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 4,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 4,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 3
+    },
+    {
+      "id": 4,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 4,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 4,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 3
+    },
+    {
+      "id": 4,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 5,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 5
+    },
+    {
+      "id": 5,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 5,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 5,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 5
+    },
+    {
+      "id": 5,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 5,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 6,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 6,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 6,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 6,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 6,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 6,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 7,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 4
+    },
+    {
+      "id": 7,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 5
+    },
+    {
+      "id": 7,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 7,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 4
+    },
+    {
+      "id": 7,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 5
+    },
+    {
+      "id": 7,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 8,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 8,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 8,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 8,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 8,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 8,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 9,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 9,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 9,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 9,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 9,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 9,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 10,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 10,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 10,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 10,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 10,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 10,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 11,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 11,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 11,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 11,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 11,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 11,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 12,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 12,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 12,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 12,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 12,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 12,
+      "kind": "lexical",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 13,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 4
+    },
+    {
+      "id": 13,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 4
+    },
+    {
+      "id": 13,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 13,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 4
+    },
+    {
+      "id": 13,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 4
+    },
+    {
+      "id": 13,
+      "kind": "entity",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 14,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 14,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 14,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 14,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 14,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 14,
+      "kind": "paraphrase",
+      "doc": "sherlock-holmes",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 15,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 15,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 15,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 15,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 15,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 15,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 16,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 16,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 16,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 16,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 16,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 16,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 17,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 17,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 17,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 17,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 17,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 17,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 18,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 18,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 18,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 18,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 18,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 18,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 19,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 19,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 19,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 19,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 19,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 19,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 20,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 2
+    },
+    {
+      "id": 20,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 20,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 20,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 2
+    },
+    {
+      "id": 20,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 20,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 21,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 21,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 21,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 21,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 21,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 21,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 22,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 22,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 22,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 22,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 22,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 22,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 23,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 23,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 23,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 23,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 23,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 23,
+      "kind": "paraphrase",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 24,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 24,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 24,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 24,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 24,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 24,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 25,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 2
+    },
+    {
+      "id": 25,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 5
+    },
+    {
+      "id": 25,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 25,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 2
+    },
+    {
+      "id": 25,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 5
+    },
+    {
+      "id": 25,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 26,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 26,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 26,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 26,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 26,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 26,
+      "kind": "entity",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 27,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 27,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 27,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 27,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 27,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 27,
+      "kind": "lexical",
+      "doc": "federalist-papers",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 28,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 28,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 28,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 28,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 28,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 28,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 29,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 29,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 29,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 29,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 29,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 29,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 30,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 30,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 30,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 30,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 30,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 30,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 31,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 31,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 31,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 31,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 31,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 31,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 32,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 32,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 32,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 32,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 3
+    },
+    {
+      "id": 32,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 2
+    },
+    {
+      "id": 32,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 33,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 33,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 3
+    },
+    {
+      "id": 33,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 33,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 33,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 3
+    },
+    {
+      "id": 33,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 34,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 34,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 34,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 34,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 34,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 34,
+      "kind": "lexical",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 35,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 35,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 35,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 35,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 35,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 35,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 3
+    },
+    {
+      "id": 36,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 36,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 36,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 36,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 36,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 1
+    },
+    {
+      "id": 36,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 37,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 37,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": 3
+    },
+    {
+      "id": 37,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 37,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 37,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": 3
+    },
+    {
+      "id": 37,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 1
+    },
+    {
+      "id": 38,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 38,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 38,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 38,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": null
+    },
+    {
+      "id": 38,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 38,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": null
+    },
+    {
+      "id": 39,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 2
+    },
+    {
+      "id": 39,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 39,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 39,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 2
+    },
+    {
+      "id": 39,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 39,
+      "kind": "paraphrase",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 2
+    },
+    {
+      "id": 40,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 40,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 40,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "all_documents",
+      "mode": "hybrid",
+      "rank": 5
+    },
+    {
+      "id": 40,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "keyword",
+      "rank": 1
+    },
+    {
+      "id": 40,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "vector",
+      "rank": null
+    },
+    {
+      "id": 40,
+      "kind": "entity",
+      "doc": "nist-sp-800-63-3",
+      "scope": "within_document",
+      "mode": "hybrid",
+      "rank": 5
+    }
+  ]
+}

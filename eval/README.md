@@ -83,6 +83,7 @@ question outside 1 to 500 characters, or if the ids or per-document counts are o
 Run from the repository root:
   uv run --with pdfplumber --with beautifulsoup4 --with python-docx --with pydantic --with fastapi python verify_phrases.py
 """
+
 import io
 import json
 import re
@@ -118,8 +119,13 @@ def extract(path: Path) -> tuple[str, str]:
         from app.ingestion.text_extractors import extract_text
 
         file_type = FileType.PDF if path.suffix == ".pdf" else FileType.TXT
-        raw = RawDocument(project_id="eval", source_id=path.stem, file_type=file_type,
-                          file_name=path.name, bytes=path.read_bytes())
+        raw = RawDocument(
+            project_id="eval",
+            source_id=path.stem,
+            file_type=file_type,
+            file_name=path.name,
+            bytes=path.read_bytes(),
+        )
         text, _ = extract_text(raw)
         how = "app.ingestion.text_extractors"
     except Exception as exc:  # app package unavailable: same operations, done directly
@@ -127,8 +133,10 @@ def extract(path: Path) -> tuple[str, str]:
 
         if path.suffix == ".pdf":
             with pdfplumber.open(io.BytesIO(path.read_bytes())) as pdf:
-                text = "".join(f"\n\n--- Page {i} ---\n\n{page.extract_text() or ''}"
-                               for i, page in enumerate(pdf.pages, 1))
+                text = "".join(
+                    f"\n\n--- Page {i} ---\n\n{page.extract_text() or ''}"
+                    for i, page in enumerate(pdf.pages, 1)
+                )
         else:
             text = path.read_bytes().decode("utf-8", errors="ignore")
         how = f"fallback ({type(exc).__name__}: {exc})"
@@ -170,7 +178,9 @@ for q in questions:
     if q["kind"] not in KINDS:
         problems.append(f"id {q['id']}: unknown kind {q['kind']!r}")
     if not 1 <= len(q["question"]) <= 500:
-        problems.append(f"id {q['id']}: question length {len(q['question'])} (AskRequest allows 1-500)")
+        problems.append(
+            f"id {q['id']}: question length {len(q['question'])} (AskRequest allows 1-500)"
+        )
 
 print()
 print("kinds:", dict(sorted(Counter(q["kind"] for q in questions).items())))
