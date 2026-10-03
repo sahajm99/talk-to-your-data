@@ -36,6 +36,16 @@
   because `astral-sh/setup-uv` has no floating `v10` tag; pinned to `v10.2.0`. Run
   37090241302 is green: 51 tests in 11 s, then the Docker build and boot check in 3 m 40 s
   from the GitHub clone, which confirms the data fix.
-- Next: create the Render service from `render.yaml` and set `GROQ_API_KEY` in the dashboard,
-  then verify the live URL against the DESIGN verification list and add the live link to the
-  portfolio card.
+- Render service `srv-db081e2d0e5s73aftkpg` created through the API with the blueprint's settings
+  (free, Oregon, Docker, health check `/api/health`, `GROQ_API_KEY`, `PUBLIC_URL`,
+  `DAILY_QUESTION_CAP`). Render assigned the suffixed hostname
+  https://talk-to-your-data-9pvq.onrender.com, so README, `render.yaml` and the portfolio card
+  were updated to it. First deploy went live about six minutes after creation.
+- Verified live against the DESIGN list: health reports three documents, 1,273 chunks and Groq
+  generation with `openai/gpt-oss-120b`; landing and about pages answer 200; hybrid and keyword
+  questions return grounded answers with five citations in 0.6 to 1.8 s; a 140-byte upload is
+  indexed into its session and answered with a citation; the session sees its own upload and the
+  three preloaded documents only. A third question fired within five seconds fell back to
+  extractive mode, which is the designed response to a Groq rejection (free-tier per-minute limit).
+- `RENDER_API_KEY` and `RENDER_SERVICE_ID` are GitHub Actions secrets on the repo for future
+  API-driven deploys; the local key lives only in the gitignored `.env`.

@@ -17,6 +17,6 @@ services:
       - key: GROQ_API_KEY
         sync: false
       - key: PUBLIC_URL
-        value: https://talk-to-your-data.onrender.com
+        value: https://talk-to-your-data-9pvq.onrender.com
       - key: DAILY_QUESTION_CAP
         value: "500"

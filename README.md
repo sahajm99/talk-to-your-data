@@ -4,7 +4,7 @@
 
 Ask a question of a document and get an answer whose citations open the exact passage they came from, next to the retrieval evidence that produced it. The whole thing runs in one free-tier container with no external services: embeddings are computed in-process, SQLite does both keyword (FTS5) and vector (sqlite-vec) search, the two rankings are fused with reciprocal rank fusion, and an open-weight model on Groq's free tier writes the answer when a key is present or the best-supported passage is returned when it is not. Retrieval quality is measured, not asserted: every number below is copied from `eval/results.json`, which `uv run python -m eval` regenerates.
 
-**Live:** https://talk-to-your-data.onrender.com (free tier; the first load after idle can take up to a minute)
+**Live:** https://talk-to-your-data-9pvq.onrender.com (free tier; the first load after idle can take up to a minute)
 
 ## What you can do
 
