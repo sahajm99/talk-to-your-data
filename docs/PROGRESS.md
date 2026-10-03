@@ -9,3 +9,14 @@
 - Removed the v1 Weaviate, OpenAI and visual-grounding modules, the old static UI and
   nine obsolete setup and troubleshooting files. Wrote `docs/DESIGN.md` (the module
   and API contracts) and `docs/DECISIONS.md`.
+
+## 2026-09-12 to 2026-09-13: Milestones 1 to 3, the rebuild
+
+- Core: uv packaging on Python 3.12, settings, models; SQLite store (FTS5 plus sqlite-vec),
+  fastembed embedder, hybrid retrieval with reciprocal rank fusion; ingestion pipeline and preload.
+- Eval: 40-question retrieval set with verified answer phrases; `uv run python -m eval` measures
+  hit@5 and MRR for keyword, vector and hybrid over two scopes and writes `eval/results.json`
+  (hybrid hit@5 0.775, MRR 0.542 on 2026-09-13).
+- UI and API: Jinja2 templates, styles, client script; ask, upload, documents, health and about
+  routes; Groq generation with extractive fallback; rate limiting; sessions; document filter.
+- Fix: answer from partial evidence; normalise gpt-oss citation marks.

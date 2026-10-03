@@ -11,7 +11,7 @@ Groq for generation when a key exists, extractive answers when it does not.
 |---|---|
 | OpenAI `text-embedding-3-large` | `fastembed` `BAAI/bge-small-en-v1.5`, 384 dims, in-process |
 | Weaviate | SQLite: FTS5 for keywords, `sqlite-vec` for vectors, RRF fusion |
-| OpenAI chat | Groq free tier (Llama), or extractive mode without a key |
+| OpenAI chat | Groq free tier (an open-weight model picked from the live model list, gpt-oss today), or extractive mode without a key |
 | PyMuPDF page images, bounding boxes ("visual grounding") | Dropped; a citation opens and highlights the chunk text |
 | Static HTML in `static/` | Jinja2 templates in `app/templates/`, assets in `app/static/` |
 | `requirements.txt` | `pyproject.toml` + `uv.lock`, Python 3.12 |
@@ -51,7 +51,7 @@ docs/DESIGN.md, DECISIONS.md, PROGRESS.md
 ## Contracts (binding for every module)
 
 ### Settings (`app/config.py`)
-`Settings(BaseSettings)` reading `.env`: `groq_api_key: str | None = None`, `groq_model: str = "llama-3.3-70b-versatile"`, `groq_fallback_model: str = "llama-3.1-8b-instant"`, `embed_model: str = "BAAI/bge-small-en-v1.5"` (`"fake"` selects `FakeEmbedder`), `data_dir: Path = Path("data")`, `index_path: Path = Path("data/index.db")`, `chunk_max_tokens: int = 300`, `chunk_overlap_tokens: int = 50`, `top_k: int = 5`, `candidates_per_source: int = 20`, `rate_limit_questions: int = 10`, `rate_limit_window_seconds: int = 600`, `daily_question_cap: int = 500`, `max_upload_bytes: int = 2_000_000`, `session_ttl_minutes: int = 60`, `public_url: str = ""`. `get_settings()` cached.
+`Settings(BaseSettings)` reading `.env`: `groq_api_key: str | None = None`, `groq_model: str = "openai/gpt-oss-120b"`, `groq_fallback_model: str = "openai/gpt-oss-20b"`, `embed_model: str = "BAAI/bge-small-en-v1.5"` (`"fake"` selects `FakeEmbedder`), `data_dir: Path = Path("data")`, `index_path: Path = Path("data/index.db")`, `chunk_max_tokens: int = 300`, `chunk_overlap_tokens: int = 50`, `top_k: int = 5`, `candidates_per_source: int = 20`, `rate_limit_questions: int = 10`, `rate_limit_window_seconds: int = 600`, `daily_question_cap: int = 500`, `max_upload_bytes: int = 2_000_000`, `session_ttl_minutes: int = 60`, `public_url: str = ""`. `get_settings()` cached.
 
 ### Embedder (`app/ingestion/embedder.py`)
 ```python
@@ -102,7 +102,7 @@ def hybrid_search(store, embedder, query, scopes, k=5, candidates=20, mode="hybr
 ```python
 @dataclass class Answer: text: str; mode: str; model: str | None; cited: list[int]   # cited = 1-based citation numbers used
 class ExtractiveAnswerer:   # no key: returns the top hit's text with query terms wrapped in <mark> (HTML-escaped first), text prefixed "Best-supported passage:"; cited=[1]
-class GroqGenerator:        # httpx to https://api.groq.com/openai/v1; on first use GET /models and pick settings.groq_model if present else fallback else first id containing "llama"; prompt: system rule "answer only from the numbered passages, cite as [n], say 'The documents do not say' when unsupported"; temperature 0.1; max_tokens 500; 20 s timeout; on any error return an ExtractiveAnswerer result with mode "extractive" and note the error in logs
+class GroqGenerator:        # httpx to https://api.groq.com/openai/v1; on first use GET /models and pick settings.groq_model if present else fallback else first id containing "gpt-oss" or "llama"; prompt: system rule "answer only from the numbered passages, cite as [n], say 'The documents do not say' when unsupported"; temperature 0.1; max_completion_tokens 900; reasoning_effort low for gpt-oss models; gpt-oss citation marks normalised to [n]; 20 s timeout; on any error return an ExtractiveAnswerer result with mode "extractive" and note the error in logs
 def answer(question: str, hits: list[Hit], settings) -> Answer
 ```
 
