@@ -1,0 +1,22 @@
+# Render Blueprint: one free web service built from the Dockerfile (docs/DESIGN.md, Hosting).
+# Spec: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: talk-to-your-data
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: main
+    # Deploy on every commit to main (the non-deprecated form of autoDeploy: true).
+    autoDeployTrigger: commit
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      # Set in the Render dashboard, never in the repo. Without it the app answers extractively.
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PUBLIC_URL
+        value: https://talk-to-your-data.onrender.com
+      - key: DAILY_QUESTION_CAP
+        value: "500"

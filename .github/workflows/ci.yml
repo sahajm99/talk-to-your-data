@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Tests (FakeEmbedder, no model download)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Run tests
+        run: uv run pytest -q
+        env:
+          EMBED_MODEL: fake
+
+  docker:
+    name: Docker image (model download, preloaded index, boot)
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build the image
+        run: docker build -t ttyd .
+      - name: Boot the container and check /api/health
+        run: |
+          docker run -d --name ttyd -p 8000:8000 -e PORT=8000 ttyd
+          ok=0
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:8000/api/health; then echo; ok=1; break; fi
+            sleep 2
+          done
+          docker logs ttyd
+          docker rm -f ttyd
+          test "$ok" = 1

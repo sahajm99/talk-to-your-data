@@ -1,0 +1,33 @@
+# Build context for the Dockerfile: everything the running app does not need stays out.
+
+# Version control, editors, local tooling
+.git
+.gitignore
+.github
+.claude
+.superpowers
+.venv
+.pytest_cache
+.ruff_cache
+.mypy_cache
+**/__pycache__
+**/*.py[cod]
+.env
+.env.*
+
+# Not needed at runtime
+tests
+docs
+**/*.md
+!README.md
+
+# data/: only the preloaded documents and their source note ship; the index is
+# rebuilt inside the image by python -m app.ingestion.preload.
+data/**
+!data/preloaded/**
+!data/SOURCE.md
+
+# These describe the build; they are not part of it
+Dockerfile
+.dockerignore
+render.yaml
